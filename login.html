@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+    <link rel="stylesheet" href="style.css">
+    <?php
+
+$host="localhost";
+$user="root";
+$password="";
+$db="demo";
+
+
+mysql_connect($host,$user,$password)
+mysql_select_db($db);
+if(isset($_POST['username'])){
+    $uname=$_POST['username'];
+    $password=$_POST['password'];
+
+    $sql="select * from login page where user='".$uname."'AND Pass='".$password."'limit 1";
+    $result=mysql_query($sql);
+
+    if(mysql_num_rows($result)==1){
+
+        echo"You Have Successfully Logged In";
+        exit();
+    }
+    else{
+        echo"You Have Entered Incorrect  Password";
+        exit();
+    }
+}
+
+
+?>
+</head>
+<body>
+    <section>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="box">
+            <div class="square" style="--i:0"></div>
+            <div class="square" style="--i:1"></div>
+            <div class="square" style="--i:2"></div>
+            <div class="square" style="--i:3"></div>
+            <div class="square" style="--i:4"></div>
+            <div class="container">
+                <div class="form">
+                    <h2>
+                        Login form 
+                    </h2>
+                    <form method="POST" action="#">
+                        <div class="inputBox">
+                        <input type="text" placeholder="Username">
+                        </div>
+                        <div class="inputBox">
+                        <input type="password" placeholder="Password">
+                        </div>
+                        <div class="inputBox">
+                        <input type="submit" value="Login">
+                        </div>
+                        <p class="forget">Forget Password ? <a href="forget.html">Click Here</a></p>
+                        <p class="forget">Dont have an account? <a href="signup.html">Sign Up</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
